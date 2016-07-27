@@ -30,12 +30,10 @@ if __name__ == "__main__":
 	myShadowClient.connect()
 	myDeviceShadow = myShadowClient.createShadowHandlerWithName("pi", True)
 
-	customCallback = "" # you can implement a custom callback function if you like
-
 	while 1==1:
 		s.trigger()
 		tempreading = "{ \"state\" : { \"reported\": { \"temp\": \"%s\", \"humid\": \"%s\" } } }" % (str(s.temperature()), str(s.humidity()))
 		print("payload: %s" % tempreading)
 		if s.temperature() != -999:
-			myDeviceShadow.shadowUpdate(tempreading, customCallback, 5)
+			myDeviceShadow.shadowUpdate(tempreading, None, 5)
 		time.sleep(60)
